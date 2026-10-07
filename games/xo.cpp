@@ -10,7 +10,7 @@ using namespace std;
 // Role A: State and Display
 void drawBoard(const vector<char>& board) {
     cout << "\n";
-    cout << " " << board[0] << " | " << board[1] << " | " << board[2] << " \n";
+    // cout << " " << board[0] << " | " << board[1] << " | " << board[2] << " \n";
     cout << "---+---+---\n";
     cout << " " << board[3] << " | " << board[4] << " | " << board[5] << " \n";
     cout << "---+---+---\n";
@@ -19,7 +19,7 @@ void drawBoard(const vector<char>& board) {
 }
 
 // Role B: Input and Moves
-bool isValidMove(const vector<char>& board, int cell) {
+bool isValidMove2(const vector<char> board, int cell) {
     if (cell < 1 || cell > 9) return false;
     if (board[cell - 1] == 'X' || board[cell - 1] == 'O') return false;
     return true;
@@ -30,7 +30,7 @@ int getPlayerInput(char currentPlayer, const vector<char>& board) {
     while (true) {
         cout << "Player " << currentPlayer << ", enter a cell (1-9): ";
         cin >> cell;
-        if (isValidMove(board, cell)) {
+        if (isValidMove2(board, cell)) {
             return cell;
         }
         cout << "Invalid move or cell already taken. Try again.\n";
