@@ -11,10 +11,6 @@ using namespace std;
 
 namespace memory_match {
    
-struct CardPosition {
-    int row;
-    int col;git
-};
 
 bool isValidPosition(int row, int col, const vector<vector<bool>>& revealed) {
     if (row < 0  row >= 4  col < 0 || col >= 4) {
