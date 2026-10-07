@@ -59,6 +59,20 @@ int readGuess(int maxNumber) {
 }
 // ---- end Role B ----
 
+// ---- Role C: rules and game loop ----
+// Prints too high / too low plus a hot-cold hint based on the distance.
+void giveHint(int guess, int secret, int maxNumber) {
+    int diff = abs(guess - secret);
+
+    cout << (guess < secret ? "Too low. " : "Too high. ");
+
+    if (diff * 20 <= maxNumber)      cout << "Burning hot!\n";
+    else if (diff * 7 <= maxNumber)  cout << "Hot.\n";
+    else if (diff * 3 <= maxNumber)  cout << "Warm.\n";
+    else                             cout << "Cold.\n";
+}
+// ---- end Role C ----
+
 }  // namespace
 
 void play() {
@@ -75,9 +89,30 @@ void play() {
     cout << "\n" << level.name << " mode: I'm thinking of a number between 1 and "
          << level.maxNumber << ".\n";
 
-    int g = readGuess(level.maxNumber);
-    // Role C: put this call inside the game loop
-    // (compare g with secret, count attempts, win/lose).
+    // ---- Role C: game loop ----
+    int attempts = 0;
+    bool won = false;
+
+    while (attempts < level.maxAttempts) {
+        cout << "\nAttempt " << attempts + 1 << " of " << level.maxAttempts << "\n";
+
+        int g = readGuess(level.maxNumber);
+        attempts++;
+
+        if (g == secret) {
+            won = true;
+            break;
+        }
+        giveHint(g, secret, level.maxNumber);
+    }
+
+    if (won) {
+        cout << "\nYou win! You found " << secret << " in " << attempts
+             << " attempt(s).\n";
+    } else {
+        cout << "\nGame over. The number was " << secret << ".\n";
+    }
+    // ---- end Role C ----
 
     waitForEnter();
 }
