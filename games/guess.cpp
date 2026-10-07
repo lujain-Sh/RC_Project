@@ -49,7 +49,27 @@ Level chooseLevel() {
 }  // namespace
 
 void play() {
+    clearScreen();
+    showBanner();
 
+    Level level = chooseLevel();
+
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<int> dist(1, level.maxNumber);
+    const int secret = dist(gen);
+
+    cout << "\n" << level.name << " mode: I'm thinking of a number between 1 and "
+         << level.maxNumber;
+
+        int g = 0;
+        while (true) {
+            cout << " - your guess: ";
+            if (parseInt(readLine(), g) && g >= 1 && g <= level.maxNumber) break;
+            cout << "Enter a whole number from 1 to " << level.maxNumber << ".\n";
+        }
+
+    waitForEnter();
 }
 
 }  // namespace guess
