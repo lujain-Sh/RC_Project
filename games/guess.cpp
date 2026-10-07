@@ -45,6 +45,19 @@ Level chooseLevel() {
     }
 }
 
+// ---- Role B: input and validation ----
+// Keeps asking until the player enters a whole number in [1, maxNumber].
+int readGuess(int maxNumber) {
+    int g = 0;
+    while (true) {
+        cout << "Your guess (1-" << maxNumber << "): ";
+        if (parseInt(readLine(), g) && g >= 1 && g <= maxNumber) {
+            return g;
+        }
+        cout << "Enter a whole number from 1 to " << maxNumber << ".\n";
+    }
+}
+// ---- end Role B ----
 
 }  // namespace
 
@@ -60,14 +73,11 @@ void play() {
     const int secret = dist(gen);
 
     cout << "\n" << level.name << " mode: I'm thinking of a number between 1 and "
-         << level.maxNumber;
+         << level.maxNumber << ".\n";
 
-        int g = 0;
-        while (true) {
-            cout << " - your guess: ";
-            if (parseInt(readLine(), g) && g >= 1 && g <= level.maxNumber) break;
-            cout << "Enter a whole number from 1 to " << level.maxNumber << ".\n";
-        }
+    int g = readGuess(level.maxNumber);
+    // Role C: put this call inside the game loop
+    // (compare g with secret, count attempts, win/lose).
 
     waitForEnter();
 }
