@@ -4,5 +4,9 @@
 #include <string>
 
 namespace hangman {
-
-}  // namespace hangman
+// ==========================================
+    // الجزء الثاني: إدخال المستخدم والتحقق (الشخص 2)
+    // ==========================================
+    // قراءة حرف من المستخدم مع التحقق من صحته ورفض التكرار
+    char readValidLetter(const std::vector<char>& alreadyGuessed);
+} 
