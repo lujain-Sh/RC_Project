@@ -24,6 +24,28 @@ void showBanner() {
     cout << "       NUMBER GUESSING GAME\n";
     cout << "=====================================\n\n";
 }
+
+Level chooseLevel() {
+    while (true) {
+        cout << "Choose a difficulty:\n";
+        cout << "  1. Easy   (1-50,   10 attempts)\n";
+        cout << "  2. Medium (1-100,   7 attempts)\n";
+        cout << "  3. Hard   (1-500,   9 attempts)\n";
+        cout << "  4. Insane (1-1000,  8 attempts)\n";
+        cout << "Your choice: ";
+
+        int c = -1;
+        if (parseInt(readLine(), c)) {
+            if (c == 1) return {"Easy", 50, 10};
+            if (c == 2) return {"Medium", 100, 7};
+            if (c == 3) return {"Hard", 500, 9};
+            if (c == 4) return {"Insane", 1000, 8};
+        }
+        cout << "\nPlease enter 1-4.\n\n";
+    }
+}
+
+
 }  // namespace
 
 void play() {
