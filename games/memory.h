@@ -1,7 +1,12 @@
 #pragma once
-// Game 4: Memory Match (4x4, 8 pairs)
 
-namespace memory_match {
+#include <vector>
 
+struct CardPosition {
+    int row;
+    int col;
+};
 
-}  // namespace memory_match
+bool isValidPosition(int row, int col, const std::vector<std::vector<bool>>& revealed);
+
+void pickTwoCards(const std::vector<std::vector<bool>>& revealed, CardPosition& card1, CardPosition& card2);
